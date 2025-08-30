@@ -42,6 +42,12 @@ app.get("/", (req, res) => {
   res.json("Welcome to TripUp Backend Development!");
 });
 
+app.use("/api/admin", require("./Route/AuthenticationRoute"));
+app.use("/api/admin/bill", require("./Route/BillRouteRoute"));
+app.use("/api/admin/mail", require("./Route/MailBillRoute"));
+app.use("/api/admin/teacher", require("./Route/TeachersRoute"));
+app.use("/api/admin/download", require("./Route/DownloadBillRoute"));
+app.use("/api/admin/profile", require("./Route/ProfileRoutes"));
 // Server Listening
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT} ⛳`);

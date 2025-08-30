@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import axios from "axios";
 import toast from "react-hot-toast";
-import deleteConfirm from "../../Components/General/DeleteConfirm";
+import deleteConfirm from "../components/General/DeleteConfirm";
 
 const initialState = {
   bill: [],
@@ -10,7 +10,7 @@ const initialState = {
   error: null,
 };
 
-const billSlice = createSlice({
+const downloadBilSlice = createSlice({
   name: "downloadBill",
   initialState,
   reducers: {
@@ -31,9 +31,9 @@ const billSlice = createSlice({
   },
 });
 
-export const { request, failure, createBillSuccess } = billSlice.actions;
+export const { request, failure, createBillSuccess } = downloadBilSlice.actions;
 
-export default billSlice.reducer;
+export default downloadBilSlice.reducer;
 
 export const downloadBill = (id) => async (dispatch, getState) => {
   dispatch(request());
@@ -48,7 +48,7 @@ export const downloadBill = (id) => async (dispatch, getState) => {
       getState().authentication.token || localStorage.getItem("token");
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/bill/download/${id}`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/download/download/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob",
@@ -86,7 +86,7 @@ export const downloadBankDetailForm = () => async (dispatch, getState) => {
       getState().authentication.token || localStorage.getItem("token");
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/bill/download/bank-detail-form`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/download/download/bank-detail-form`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob",
@@ -136,7 +136,7 @@ export const downloadPersonBill = (id) => async (dispatch, getState) => {
         const response = await axios.get(
           `${
             import.meta.env.VITE_BACKEND_API
-          }/bill/download/personalBill/${id}`,
+          }/admin/download/download/personalBill/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
             responseType: "blob",

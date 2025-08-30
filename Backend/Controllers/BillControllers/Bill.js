@@ -3,7 +3,6 @@ const BillModel = require("../../Model/BillModel");
 const { format } = require("date-fns");
 const nodemailer = require("nodemailer");
 
-
 const validateBill = [
   body("department").notEmpty().withMessage("Department is required"),
   body("className").notEmpty().withMessage("Class name is required"),
@@ -106,8 +105,7 @@ const getBills = async (req, res) => {
   console.log("Req in get Bills");
 
   try {
-    const id = req.user.userId;
-    const bills = await BillModel.find({ userId: id }).sort({ createdAt: -1 });
+    const bills = await BillModel.find({}).sort({ createdAt: -1 });
     res.json({ success: true, data: bills });
   } catch (error) {
     res.status(500).json({ success: false, error: "Server error" });
@@ -188,12 +186,9 @@ const deleteBill = async (req, res) => {
   }
 };
 
-
-
-
 module.exports = {
   validateBill,
-//   createBill,
+  //   createBill,
   getBills,
   getBillById,
   updateBill,

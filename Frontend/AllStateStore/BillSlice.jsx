@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import axios from "axios";
 import toast from "react-hot-toast";
-import deleteConfirm from "../../Components/General/DeleteConfirm";
+import deleteConfirm from "../components/General/DeleteConfirm";
 
 const initialState = {
   bills: [],
@@ -79,41 +79,41 @@ const getAuthHeader = (getState) => {
 };
 
 // Thunks
-export const createBill =
-  (formData, navigate) => async (dispatch, getState) => {
-    dispatch(request());
-    Swal.fire({ title: "Creating Bill...", didOpen: () => Swal.showLoading() });
+// export const createBill =
+//   (formData, navigate) => async (dispatch, getState) => {
+//     dispatch(request());
+//     Swal.fire({ title: "Creating Bill...", didOpen: () => Swal.showLoading() });
 
-    try {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_BACKEND_API}/bill`,
-        formData,
-        getAuthHeader(getState)
-      );
+//     try {
+//       const { data } = await axios.post(
+//         `${import.meta.env.VITE_BACKEND_API}/admin/bill`,
+//         formData,
+//         getAuthHeader(getState)
+//       );
 
-      Swal.close();
+//       Swal.close();
 
-      dispatch(createBillSuccess());
-      toast.success("Bill created successfully!");
-      navigate("/bills");
-      dispatch(fetchBills());
-    } catch (err) {
-      Swal.close();
-      console.error(err);
-      dispatch(
-        failure(
-          err.response?.data?.message ||
-            err.response?.data?.errors[0]?.msg ||
-            "Create failed"
-        )
-      );
-      toast.error(
-        err.response?.data?.message ||
-          err.response?.data?.errors[0]?.msg ||
-          "Create failed"
-      );
-    }
-  };
+//       dispatch(createBillSuccess());
+//       toast.success("Bill created successfully!");
+//       navigate("/bills");
+//       dispatch(fetchBills());
+//     } catch (err) {
+//       Swal.close();
+//       console.error(err);
+//       dispatch(
+//         failure(
+//           err.response?.data?.message ||
+//             err.response?.data?.errors[0]?.msg ||
+//             "Create failed"
+//         )
+//       );
+//       toast.error(
+//         err.response?.data?.message ||
+//           err.response?.data?.errors[0]?.msg ||
+//           "Create failed"
+//       );
+//     }
+//   };
 
 export const fetchBills = () => async (dispatch, getState) => {
   dispatch(request());
@@ -121,7 +121,7 @@ export const fetchBills = () => async (dispatch, getState) => {
 
   try {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/bill`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/bill`,
       getAuthHeader(getState)
     );
 
@@ -139,7 +139,7 @@ export const fetchBillById = (id) => async (dispatch, getState) => {
 
   try {
     const { data } = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/bill/${id}`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/bill/${id}`,
       getAuthHeader(getState)
     );
 
@@ -159,7 +159,7 @@ export const updateBill =
 
     try {
       const { data } = await axios.put(
-        `${import.meta.env.VITE_BACKEND_API}/bill/${id}`,
+        `${import.meta.env.VITE_BACKEND_API}/admin/bill/${id}`,
         formData,
         getAuthHeader(getState)
       );
@@ -198,7 +198,7 @@ export const deleteBill = (id) => async (dispatch, getState) => {
 
     try {
       await axios.delete(
-        `${import.meta.env.VITE_BACKEND_API}/bill/${id}`,
+        `${import.meta.env.VITE_BACKEND_API}/admin/bill/${id}`,
         getAuthHeader(getState)
       );
 

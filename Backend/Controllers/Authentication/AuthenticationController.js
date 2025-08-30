@@ -7,6 +7,8 @@ const nodemailer = require("nodemailer");
 //  SIGNUP
 exports.signup = async (req, res) => {
   try {
+    console.log("Request Body of Signup");
+    console.log(req.body);
     const { name, email, mobileNumber, password, role = "admin" } = req.body;
 
     // Validate required fields
@@ -61,6 +63,7 @@ exports.signup = async (req, res) => {
 
 //  LOGIN EMAIL + PASSWORD
 exports.loginEmailPassword = async (req, res) => {
+  console.log("req in mail password");
   try {
     const { email, password } = req.body;
     if (!email || !password)
@@ -95,11 +98,11 @@ exports.loginMobilePassword = async (req, res) => {
     if (!mobileNumber || !password)
       return res
         .status(400)
-        .json({ message: "Mobile mobileNumber and Password required" });
+        .json({ message: "Mobile Number and Password required" });
 
     const user = await UserModel.findOne({ mobileNumber });
     if (!user)
-      return res.status(404).json({ message: "Mobile mobileNumber not found" });
+      return res.status(404).json({ message: "Mobile Number not found" });
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: "Invalid password" });

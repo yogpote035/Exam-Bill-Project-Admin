@@ -1,3 +1,40 @@
+import { createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
+import axios from "axios";
+import toast from "react-hot-toast";
+import deleteConfirm from "../components/General/DeleteConfirm";
+
+const initialState = {
+  bill: [],
+  loading: false,
+  error: null,
+};
+
+const billSlice = createSlice({
+  name: "downloadBill",
+  initialState,
+  reducers: {
+    request: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    failure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    // Create
+    createBillSuccess: (state, action) => {
+      state.loading = false;
+      state.error = null;
+    },
+  },
+});
+
+export const { request, failure, createBillSuccess } = billSlice.actions;
+
+export default billSlice.reducer;
+
 export const mailPersonalBillsToSelf = (id) => async (dispatch, getState) => {
   dispatch(request());
   Swal.fire({
@@ -10,7 +47,7 @@ export const mailPersonalBillsToSelf = (id) => async (dispatch, getState) => {
       getState().authentication.token || localStorage.getItem("token");
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/bill/mail/personalBill/${id}`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/mail/mail/personalBill/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob",
@@ -42,7 +79,7 @@ export const mailPersonalBillsToOther =
       const response = await axios.post(
         `${
           import.meta.env.VITE_BACKEND_API
-        }/bill/mail/personalBill/other/${id}`,
+        }/admin/mail/mail/personalBill/other/${id}`,
         { email },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -71,7 +108,7 @@ export const mailMainBillToSelf = (id) => async (dispatch, getState) => {
       getState().authentication.token || localStorage.getItem("token");
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/bill/mail/mainBill/${id}`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/mail/mail/mainBill/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob",
@@ -101,7 +138,7 @@ export const mailMainBillToOther =
         getState().authentication.token || localStorage.getItem("token");
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_API}/bill/mail/mainBill/other/${id}`,
+        `${import.meta.env.VITE_BACKEND_API}/admin/mail/mail/mainBill/other/${id}`,
         { email },
         {
           headers: { Authorization: `Bearer ${token}` },

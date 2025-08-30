@@ -104,9 +104,8 @@ export const signup = (formData, navigate) => async (dispatch) => {
 
   try {
     const { data } = await axios.post(
-      `${import.meta.env.VITE_BACKEND_API}/authentication/signup`,
-      formData,
-      { headers: { "Content-Type": "multipart/form-data" } }
+      `${import.meta.env.VITE_BACKEND_API}/admin/signup`,
+      formData
     );
 
     Swal.close();
@@ -129,9 +128,7 @@ export const loginEmailPassword =
 
     try {
       const { data } = await axios.post(
-        `${
-          import.meta.env.VITE_BACKEND_API
-        }/authentication/login/email-password`,
+        `${import.meta.env.VITE_BACKEND_API}/admin/login/email-password`,
         { email, password }
       );
 
@@ -154,9 +151,7 @@ export const loginNumberPassword =
 
     try {
       const { data } = await axios.post(
-        `${
-          import.meta.env.VITE_BACKEND_API
-        }/authentication/login/number-password`,
+        `${import.meta.env.VITE_BACKEND_API}/admin/login/number-password`,
         { mobileNumber, password }
       );
 
@@ -181,7 +176,7 @@ export const otpSent = (email) => async (dispatch) => {
 
   try {
     await axios.post(
-      `${import.meta.env.VITE_BACKEND_API}/authentication/login/sent-otp`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/login/sent-otp`,
       { email }
     );
     Swal.close();
@@ -201,7 +196,7 @@ export const verifyOtp = (email, otp, navigate) => async (dispatch) => {
 
   try {
     const { data } = await axios.post(
-      `${import.meta.env.VITE_BACKEND_API}/authentication/login/email-otp`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/login/email-otp`,
       { email, otp }
     );
 
