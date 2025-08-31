@@ -5,7 +5,12 @@ const VerifyToken = require("../Middleware/VerifyToken");
 
 router.get("/", VerifyToken, BillController.getBills);
 router.get("/:id", VerifyToken, BillController.getBillById);
-router.put("/:id", VerifyToken, BillController.updateBill);
+router.put(
+  "/:id",
+  VerifyToken,
+  BillController.validateBill,
+  BillController.updateBill
+);
 router.delete("/:id", VerifyToken, BillController.deleteBill);
 
 module.exports = router;

@@ -39,8 +39,5 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Unique teacherId but only for teachers
-userSchema.index({ role: 1, teacherId: 1 }, { unique: true, sparse: true });
-
 const UserModel = mongoose.model("UserModel", userSchema);
 module.exports = UserModel;

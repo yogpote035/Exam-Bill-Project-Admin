@@ -7,6 +7,7 @@ const StaffPaymentSchema = new mongoose.Schema(
       ref: "UserModel",
       required: true,
     },
+    status: { type: String, }, // changed by admin
     department: { type: String, required: true }, // Computer Science
     className: { type: String, required: true }, // T.Y. B.Sc. (Comp Sci)
     subject: { type: String, required: true }, // Subject name
@@ -19,7 +20,14 @@ const StaffPaymentSchema = new mongoose.Schema(
     examSession: { type: String, required: true }, // "March/April 2025"
     examType: {
       type: String,
-      enum: ["Theory", "Internal", "External", "Practical", "Department","Other"],
+      enum: [
+        "Theory",
+        "Internal",
+        "External",
+        "Practical",
+        "Department",
+        "Other",
+      ],
       required: true,
     },
     paperNo: { type: String }, //  "Paper II"

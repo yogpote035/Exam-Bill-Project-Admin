@@ -148,7 +148,7 @@ const updateBill = async (req, res) => {
         req.body.totalStudents - req.body.presentStudents;
     }
 
-    const bill = await BillModel.findByIdAndUpdate(id, req.body, {
+    const bill = await BillModel.findByIdAndUpdate(id, { ...req.body, status: "Edited By Admin" }, {
       new: true,
       runValidators: true,
     });

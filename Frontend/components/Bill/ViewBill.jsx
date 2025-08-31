@@ -278,7 +278,12 @@ export default function ViewBill() {
             </p>
             <p>
               <strong>Paper No:</strong> {currentBill.paperNo || "N/A"}
-            </p>
+            </p>{" "}
+            {currentBill.status && (
+              <p>
+                <strong>Status:</strong> {currentBill?.status || "N/A"}
+              </p>
+            )}
           </div>
         </div>
 

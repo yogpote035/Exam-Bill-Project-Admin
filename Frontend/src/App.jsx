@@ -1,6 +1,6 @@
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
-import TeachersList from "../components/Authentication/TeacherList";
+import TeachersList from "../components/Teacher/TeacherList";
 import AllBills from "../components/Bill/AllBill";
 import UpdateBill from "../components/Bill/updateBill";
 import ViewBill from "../components/Bill/ViewBill";
