@@ -48,7 +48,7 @@ export const downloadBill = (id) => async (dispatch, getState) => {
       getState().authentication.token || localStorage.getItem("token");
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/admin/download/download/${id}`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/download/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob",
@@ -86,7 +86,7 @@ export const downloadBankDetailForm = () => async (dispatch, getState) => {
       getState().authentication.token || localStorage.getItem("token");
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/admin/download/download/bank-detail-form`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/download/bank-detail-form`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob",
@@ -136,7 +136,7 @@ export const downloadPersonBill = (id) => async (dispatch, getState) => {
         const response = await axios.get(
           `${
             import.meta.env.VITE_BACKEND_API
-          }/admin/download/download/personalBill/${id}`,
+          }/admin/download/personalBill/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
             responseType: "blob",

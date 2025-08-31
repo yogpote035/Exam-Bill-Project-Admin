@@ -5,20 +5,20 @@ const VerifyToken = require("../Middleware/VerifyToken");
 
 // mail personal bill
 router.get(
-  "/mail/personalBill/:id",
+  "/personalBill/:id",
   VerifyToken,
   billController.mailPersonalBillsSelf
 );
 router.post(
-  "/mail/personalBill/other/:id",
+  "/personalBill/other/:id",
   VerifyToken,
   billController.mailPersonalBillsOther
 );
 // mail main bill
-router.get("/mail/mainBill/:id", VerifyToken, billController.mailMainBillSelf);
+router.get("/mainBill/:id", VerifyToken, billController.mailMainBillSelf);
 
 router.post(
-  "/mail/mainBill/other/:id",
+  "/mainBill/other/:id",
   VerifyToken,
   billController.mailMainBillOther
 );

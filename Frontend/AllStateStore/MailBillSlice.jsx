@@ -47,7 +47,7 @@ export const mailPersonalBillsToSelf = (id) => async (dispatch, getState) => {
       getState().authentication.token || localStorage.getItem("token");
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/admin/mail/mail/personalBill/${id}`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/mail/personalBill/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob",
@@ -79,7 +79,7 @@ export const mailPersonalBillsToOther =
       const response = await axios.post(
         `${
           import.meta.env.VITE_BACKEND_API
-        }/admin/mail/mail/personalBill/other/${id}`,
+        }/admin/mail/personalBill/other/${id}`,
         { email },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -108,7 +108,7 @@ export const mailMainBillToSelf = (id) => async (dispatch, getState) => {
       getState().authentication.token || localStorage.getItem("token");
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_API}/admin/mail/mail/mainBill/${id}`,
+      `${import.meta.env.VITE_BACKEND_API}/admin/mail/mainBill/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: "blob",
@@ -138,7 +138,7 @@ export const mailMainBillToOther =
         getState().authentication.token || localStorage.getItem("token");
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_API}/admin/mail/mail/mainBill/other/${id}`,
+        `${import.meta.env.VITE_BACKEND_API}/admin/mail/mainBill/other/${id}`,
         { email },
         {
           headers: { Authorization: `Bearer ${token}` },

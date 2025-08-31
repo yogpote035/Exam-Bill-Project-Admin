@@ -5,13 +5,13 @@ const VerifyToken = require("../Middleware/VerifyToken");
 
 // bank detail form
 router.get(
-  "/download/bank-detail-form",
+  "/bank-detail-form",
   VerifyToken,
   billController.downloadBankDetailForm
 );
-router.get("/download/:id", VerifyToken, billController.downloadBill);
+router.get("/:id", VerifyToken, billController.downloadBill);
 router.get(
-  "/download/personalBill/:id",
+  "/personalBill/:id",
   VerifyToken,
   billController.downloadPersonalBills
 );
